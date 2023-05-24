@@ -9,7 +9,7 @@
     "routes": [
         {
             "src": "/(.*)",
-            "dest": "src/mailer.js"
+            "dest": "mailer.js"
         }
     ]
 }
