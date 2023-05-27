@@ -29,8 +29,8 @@ app.post('/api/commander', (req, res) => {
     var article_ = `<strong>Article:</strong> ${article}<br>`;
     var messageMail = "<h2>Nouvelle commande de : </h2><br><br>" + client + article_;
 
-    var messageMailConfirmation = "Votre commande pour le tableau" + article + " de chez <strong>By-Ndeya</strong> a été bien reçue."+
-                                    "\nOn vous contactera pour discuter des modalités de livraison.\n\nBien cordialement\nBy-Ndeyaa";
+    var greeting = `Bonjour M/Mme ${lastName} ${firstName},\n`
+    var messageMailConfirmation = greeting +"Votre commande pour le tableau" + `<strong>${article}</strong>` + " de chez <strong>By-Ndeya</strong> a été bien reçue.\n"+"\nOn vous contactera pour discuter des modalités de livraison.\n\nBien cordialement\nBy-Ndeyaa";
 
     // faire l'envoi des données par mail
     if(!(firstName==="" || lastName==="" || adresse==="" || tel==="")){
