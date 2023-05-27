@@ -33,7 +33,7 @@ app.post('/api/commander', (req, res) => {
     var messageMailConfirmation = greeting +"Votre commande pour le tableau" + ` <strong>${article}</strong>` + " de chez <strong>By-Ndeya</strong> a été bien reçue.<br><br>On vous contactera pour discuter des modalités de livraison.<br><br>Bien cordialement<br>By-Ndeyaa";
 
     var botMail = 'botbyndeyaa@gmail.com';
-    var recepComMail = 'niassndeyefatou649@gmail.com';
+    var recepComMail = 'mayelthiam81@gmail.com'//'niassndeyefatou649@gmail.com';
     // faire l'envoi des données par mail
     if(!(firstName==="" || lastName==="" || adresse==="" || tel==="")){
         let transporter = nodemailer.createTransport({  
