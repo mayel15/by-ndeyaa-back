@@ -29,6 +29,9 @@ app.post('/api/commander', (req, res) => {
     var article_ = `<strong>Article:</strong> ${article}<br>`;
     var messageMail = "<h2>Nouvelle commande de : </h2><br><br>" + client + article_;
 
+    var messageMailConfirmation = "Votre commande pour le tableau" + article + " de chez <strong>By-Ndeya</strong> a été bien reçue."+
+                                    "\nOn vous contactera pour discuter des modalités de livraison.\n\nBien cordialement\nBy-Ndeyaa";
+
     // faire l'envoi des données par mail
     if(!(firstName==="" || lastName==="" || adresse==="" || tel==="")){
         let transporter = nodemailer.createTransport({  
@@ -50,6 +53,25 @@ app.post('/api/commander', (req, res) => {
           };
     
         transporter.sendMail(mail, (error, info) => {  
+            if (error) {  
+                console.log(error);  
+                res.send({message: "error"});
+            } else {  
+                console.log('Email: ' + info.response);  
+                res.send({message: "mail sent successfully"});
+            }  
+        });
+
+        let mailConfirmation = {  
+            from: 'mayelthiam81@gmail.com',  
+            to: email,  
+            subject: 'Votre commande a été reçue :)',  
+            html:`<html>` + messageMailConfirmation + `</html>`
+            // on peut remplacer l'attribut `text`par `html`si on veut que le cors de notre email supporte le HTML
+            // html:  '<h1>This email use html</h1>'
+          };
+    
+        transporter.sendMail(mailConfirmation, (error, info) => {  
             if (error) {  
                 console.log(error);  
                 res.send({message: "error"});
