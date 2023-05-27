@@ -27,25 +27,27 @@ app.post('/api/commander', (req, res) => {
 
     var client = `<strong>Nom:</strong> ${firstName}<br><strong>Prenom</strong>: ${lastName}<br><strong>Tel:</strong> ${tel} <br><strong>Email:</strong> ${email} <br><strong>Adresse:</strong> ${adresse}<br>`;
     var article_ = `<strong>Article:</strong> ${article}<br>`;
-    var messageMail = "<h2>Nouvelle commande de : </h2><br><br>" + client + article_;
+    var messageMail = "Bonjour,<br><br> La commande suivante a été passée :<br><br>" + client + article_ + "<br><br>Bien cordialment<br>Bot-By-Ndeyaa pour vous servir :)";
 
-    var greeting = `Bonjour M/Mme ${lastName} ${firstName},\n`
-    var messageMailConfirmation = greeting +"Votre commande pour le tableau" + `<strong>${article}</strong>` + " de chez <strong>By-Ndeya</strong> a été bien reçue.\n"+"\nOn vous contactera pour discuter des modalités de livraison.\n\nBien cordialement\nBy-Ndeyaa";
+    var greeting = `Bonjour M/Mme ${lastName} ${firstName},<br><br>`
+    var messageMailConfirmation = greeting +"Votre commande pour le tableau" + ` <strong>${article}</strong>` + " de chez <strong>By-Ndeya</strong> a été bien reçue.<br><br>On vous contactera pour discuter des modalités de livraison.<br><br>Bien cordialement<br>By-Ndeyaa";
 
+    var botMail = 'botbyndeyaa@gmail.com';
+    var recepComMail = 'niassndeyefatou649@gmail.com';
     // faire l'envoi des données par mail
     if(!(firstName==="" || lastName==="" || adresse==="" || tel==="")){
         let transporter = nodemailer.createTransport({  
             host: 'smtp.gmail.com',
             port: 587, // 587 -> TLS & 465 -> SSL
             auth: {  
-              user: 'mayelthiam81@gmail.com', // email de votre votre compte google
-              pass: 'yzwfjryqrnqwknfg' // password de votre compte google
+              user: botMail, // email de votre votre compte google
+              pass: 'tnjupodthtykffjx' // password de votre compte google
             }  
         });
     
         let mail = {  
-            from: 'mayelthiam81@gmail.com',  
-            to: 'papemayel1515@gmail.com',  
+            from: botMail,  
+            to: recepComMail,  
             subject: 'Nouvelle commande !',  
             html:`<html>` + messageMail + `</html>`
             // on peut remplacer l'attribut `text`par `html`si on veut que le cors de notre email supporte le HTML
@@ -63,7 +65,7 @@ app.post('/api/commander', (req, res) => {
         });
 
         let mailConfirmation = {  
-            from: 'mayelthiam81@gmail.com',  
+            from: botMail,  
             to: email,  
             subject: 'Votre commande a été reçue :)',  
             html:`<html>` + messageMailConfirmation + `</html>`
