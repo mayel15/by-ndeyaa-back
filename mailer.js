@@ -29,7 +29,7 @@ app.post('/api/commander', (req, res) => {
     var article_ = `<strong>Article:</strong> ${article}<br>`;
     var messageMail = "Bonjour,<br><br> La commande suivante a été passée :<br><br>" + client + article_ + "<br><br>Bien cordialment<br>Bot-By-Ndeyaa pour vous servir :)";
 
-    var greeting = `Bonjour M/Mme ${lastName} ${firstName},<br><br>`
+    var greeting = `Bonjour M/Mme ${firstName} ${lastName},<br><br>`
     var messageMailConfirmation = greeting +"Votre commande pour le tableau" + ` <strong>${article}</strong>` + " de chez <strong>By-Ndeya</strong> a été bien reçue.<br><br>On vous contactera pour discuter des modalités de livraison.<br><br>Bien cordialement<br>By-Ndeyaa";
 
     var botMail = 'botbyndeyaa@gmail.com';
